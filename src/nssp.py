@@ -144,3 +144,4 @@ def write(obj, spacing, level):
         return str(obj)
    
 print(write(a, 4, 0))
+print(1)
