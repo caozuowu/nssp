@@ -98,7 +98,7 @@ def __cutLineComment(start, string):
     else:
         return (start, start, '')
  
-def __cutBlockcomment(start, string):
+def __cutBlockComment(start, string):
     end, length = start+2, len(string)
     if string[start: start+2] == '/*':
         while end < length-1 and string[end: end + 2] != '*/':
@@ -117,15 +117,13 @@ def __nextSymble(start, string, keys = __KEY_SYMBLES):
         elif string[end: end+2] == '//':
             _, end, _ = __cutLineComment(end, string)
         elif string[end: end+2] == '/*':
-            _, end, value = __cutBlockcomment(end, string)
+            _, end, value = __cutBlockComment(end, string)
             blockComments.append(value)
         if string[end] in keys:
             return (string[end], end, blockComments)            
         end += 1
     return (None, end, blockComments)
 
-_string = open(r'C:\Users\zuowu\Desktop\projects\nssp\testfiles\project.pbxproj').read()
-a = read(_string)
  
 def write(obj, spacing, level):
     if type(obj) is dict:
